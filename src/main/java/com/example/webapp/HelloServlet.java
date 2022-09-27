@@ -1,6 +1,10 @@
 package com.example.webapp;
 
 import java.io.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -23,5 +27,28 @@ public class HelloServlet extends HttpServlet {
     }
 
     public void destroy() {
+    }
+
+
+    public static void main(String[] args) {
+
+//        try(Connection conn = DriverManager.getConnection("jdbc:sqlite:/Volumes/Production/Courses/Programs/JavaPrograms/TestDB/testjava.db");
+//            Statement statement = conn.createStatement()) {
+//            statement.execute("CREATE TABLE contacts (name TEXT, phone INTEGER, email TEXT)");
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
+            Statement statement = conn.createStatement();
+            System.out.println("Connection established!!");
+            statement.execute("CREATE TABLE Category (Id INTEGER, CategoryName nchar)");
+
+            statement.close();
+            conn.close();
+
+//            Connection conn = DriverManager.getConnection("jdbc:sqlite:D:\\databases\\testjava.db");
+//            Class.forName("org.sql.JDBC");
+
+        } catch (SQLException e) {
+            System.out.println("Something went wrong: " + e.getMessage());
+        }
     }
 }
