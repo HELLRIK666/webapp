@@ -24,31 +24,40 @@ public class HelloServlet extends HttpServlet {
         out.println("<html><body>");
         out.println("<h1>" + message + "</h1>");
         out.println("</body></html>");
+
+
     }
 
-    public void destroy() {
-    }
-
-
-    public static void main(String[] args) {
-
-//        try(Connection conn = DriverManager.getConnection("jdbc:sqlite:/Volumes/Production/Courses/Programs/JavaPrograms/TestDB/testjava.db");
-//            Statement statement = conn.createStatement()) {
-//            statement.execute("CREATE TABLE contacts (name TEXT, phone INTEGER, email TEXT)");
+    public static void connectionMethod(){
         try {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
             Statement statement = conn.createStatement();
-            System.out.println("Connection established!!");
-            statement.execute("CREATE TABLE Category (Id INTEGER, CategoryName nchar)");
+            System.out.println("<html><body>");
+            System.out.println("<h1>" + "Connection established!!" + "</h1>");
+            System.out.println("</body></html>");
+
+            statement.execute(  "CREATE TABLE Category (\n" +
+                                    "    Id INT NOT NULL,\n" +
+                                    "    CategoryName NVARCHAR,\n" +
+                                    "    PRIMARY KEY (ID)\n" +
+                                    ");");
 
             statement.close();
             conn.close();
 
-//            Connection conn = DriverManager.getConnection("jdbc:sqlite:D:\\databases\\testjava.db");
-//            Class.forName("org.sql.JDBC");
+
 
         } catch (SQLException e) {
             System.out.println("Something went wrong: " + e.getMessage());
         }
     }
+
+
+
+
+    public void destroy() {
+    }
+
+
+
 }
