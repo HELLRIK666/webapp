@@ -6,33 +6,26 @@
     <title>Consid wep app frontend</title>
 </head>
 <body>
+<br>
+Welcome to the Consid backend library webapp
+<br>
+<br>
+<br>
 <form method="POST" action="helloServlet">
-    Name: <input type="text" name="name" />
+    Add category: <input type="text" name="category" />
     <input type="submit" value="Add" />
 </form>
-
+<br>
+<form method="POST" action="helloServlet">
+    Delete category: <input type="text" name="category" />
+    <input type="submit" value="Delete" />
+</form>
+<br>
 
     <%
         HelloServlet.connectionMethod();
-        /*
-        Class.forName("org.sqlite.JDBC");
-        Connection conn =
-                DriverManager.getConnection("jdbc:sqlite:c:\\...\\webshop.db");
-        Statement stat = conn.createStatement();
 
-        ResultSet rs = stat.executeQuery("select * from products;");
-
-        while (rs.next()) {
-            out.println("<tr>");
-            out.println("<td>" + rs.getString("id") + "</td>");
-            out.println("<td>" + rs.getString("title") + "</td>");
-            out.println("<td>" + rs.getString("price") + " kr.</td>");
-            out.println("<td>" + rs.getString("description") + "</td>");
-            out.println("</tr>");
-        }
-
-        rs.close();
-        conn.close(); */
+        String name = request.getParameter("category");
     %>
 
 
