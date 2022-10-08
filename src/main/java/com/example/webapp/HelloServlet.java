@@ -43,6 +43,12 @@ public class HelloServlet extends HttpServlet {
                                     ");");
 
             statement.close();
+
+            statement.execute(  "INSERT INTO Category (Id, CategoryName)\n" +
+                                    "VALUES (1, 'DRAMA');");
+
+
+            statement.close();
             conn.close();
 
 
