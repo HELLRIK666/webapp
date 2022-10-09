@@ -1,5 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@page import="java.util.*,com.example.webapp.HelloServlet"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="org.sqlite.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -25,7 +27,31 @@ Welcome to the Consid backend library webapp
     <%
         HelloServlet.connectionMethod();
 
-        String name = request.getParameter("category");
+        //String name = request.getParameter("category");
+
+
+
+    %>
+<br><br>
+Here come the list of current categories:
+<br><br>
+    <%
+        Connection conn =
+                DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
+        Statement stat = conn.createStatement();
+        ResultSet rs = stat.executeQuery("select * from Category;");
+
+
+        while (rs.next()) {
+            out.println("<tr>");
+            out.println("<td>" + rs.getString("Id") + "</td>");
+            out.println("<td>" + rs.getString("CategoryName") + "</td>");
+            out.println("<br>");
+            out.println("</tr>");
+        }
+
+        rs.close();
+        conn.close();
     %>
 
 

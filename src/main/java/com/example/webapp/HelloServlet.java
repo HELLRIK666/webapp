@@ -36,19 +36,20 @@ public class HelloServlet extends HttpServlet {
             System.out.println("<h1>" + "Connection established!!" + "</h1>");
             System.out.println("</body></html>");
 
-            statement.execute(  "CREATE TABLE Category (\n" +
+            statement.execute(  "CREATE TABLE IF NOT EXISTS Category (\n" +
                                     "    Id INT NOT NULL,\n" +
                                     "    CategoryName NVARCHAR,\n" +
-                                    "    PRIMARY KEY (ID)\n" +
-                                    ");");
-
+                                    "    PRIMARY KEY (Id))\n" );
             statement.close();
 
-            statement.execute(  "INSERT INTO Category (Id, CategoryName)\n" +
-                                    "VALUES (1, 'DRAMA');");
-
-
+            statement.execute(  "insert into Category (Id, CategoryName) \n" +
+                                    "values (1,'Action'), (2, 'Romance') \n"
+                                    );
             statement.close();
+
+
+
+
             conn.close();
 
 
