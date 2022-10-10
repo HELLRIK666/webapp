@@ -1,10 +1,7 @@
 package com.example.webapp;
 
 import java.io.*;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 
@@ -59,7 +56,22 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
+    public static <statement> void addCategoryToDatabase(String newcategory){
 
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
+            Statement statement = conn.createStatement();
+
+            statement.execute(  "insert into Category (Id, CategoryName) \n" +
+                                    "values (3," + newcategory + "); \n"
+                             );
+            statement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Something went wrong when adding Category to db: " + e.getMessage());
+        }
+    }
 
 
     public void destroy() {

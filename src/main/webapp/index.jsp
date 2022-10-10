@@ -13,7 +13,7 @@ Welcome to the Consid backend library webapp
 <br>
 <br>
 <br>
-<form method="POST" action="helloServlet">
+<form method="POST" action="addCategoryClick.jsp">
     Add category: <input type="text" name="category" />
     <input type="submit" value="Add" />
 </form>
@@ -26,8 +26,6 @@ Welcome to the Consid backend library webapp
 
     <%
         HelloServlet.connectionMethod();
-
-        //String name = request.getParameter("category");
 
 
 
