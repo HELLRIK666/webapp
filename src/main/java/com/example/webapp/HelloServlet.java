@@ -56,14 +56,14 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
-    public static <statement> void addCategoryToDatabase(String newcategory){
+    public static void addCategoryToDatabase(String newcategory){
 
         try {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
             Statement statement = conn.createStatement();
 
             statement.execute(  "insert into Category (Id, CategoryName) \n" +
-                                    "values (3," + newcategory + "); \n"
+                                    "values (3,'" + newcategory + "') \n"
                              );
             statement.close();
             conn.close();

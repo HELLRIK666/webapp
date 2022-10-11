@@ -6,6 +6,7 @@
 <html>
 <head>
     <title>Title</title>
+    <meta http-equiv="refresh" content="1; URL=index.jsp" />
 </head>
 <body>
 <%
@@ -14,6 +15,7 @@
     String name = request.getParameter("category");
     System.out.println(name);
     HelloServlet.addCategoryToDatabase(name);
+
 
 %>
 </body>
