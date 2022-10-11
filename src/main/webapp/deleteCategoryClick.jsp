@@ -5,16 +5,16 @@
 
 <html>
 <head>
-    <title>Title</title>
-    <meta http-equiv="refresh" content="0; URL=index.jsp" />
+  <title>Title</title>
+  <meta http-equiv="refresh" content="0; URL=index.jsp" />
 </head>
 <body>
 <%
 
 
-    String name = request.getParameter("category");
-    //System.out.println(name);
-    HelloServlet.addCategoryToDatabase(name);
+  String name = request.getParameter("delete");
+  //System.out.println(name);
+  HelloServlet.deleteCategoryFromDatabase(name);
 
 
 %>

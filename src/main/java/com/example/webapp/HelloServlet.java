@@ -34,13 +34,13 @@ public class HelloServlet extends HttpServlet {
             System.out.println("</body></html>");
 
             statement.execute(  "CREATE TABLE IF NOT EXISTS Category (\n" +
-                                    "    Id INT NOT NULL,\n" +
-                                    "    CategoryName NVARCHAR,\n" +
-                                    "    PRIMARY KEY (Id))\n" );
+                                    "    Id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                                    "    CategoryName NVARCHAR UNIQUE)\n" );
+
             statement.close();
 
-            statement.execute(  "insert into Category (Id, CategoryName) \n" +
-                                    "values (1,'Action'), (2, 'Romance') \n"
+            statement.execute(  "insert or ignore into Category (CategoryName) \n" +
+                                    "values ('Action'), ('Romance') \n"
                                     );
             statement.close();
 
@@ -62,14 +62,29 @@ public class HelloServlet extends HttpServlet {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
             Statement statement = conn.createStatement();
 
-            statement.execute(  "insert into Category (Id, CategoryName) \n" +
-                                    "values (3,'" + newcategory + "') \n"
+            statement.execute(  "insert or IGNORE into Category (CategoryName) \n" +
+                                    "values ('" + newcategory + "') \n"
                              );
             statement.close();
             conn.close();
 
         } catch (SQLException e) {
             System.out.println("Something went wrong when adding Category to db: " + e.getMessage());
+        }
+    }
+
+    public static void deleteCategoryFromDatabase(String oldcategory){
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
+            Statement statement = conn.createStatement();
+            String sqlString = "DELETE FROM Category WHERE CategoryName = '\" + oldcategory + \"';";
+            statement.execute(sqlString);
+            statement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Something went wrong when deleting Category to db: " + e.getMessage());
         }
     }
 

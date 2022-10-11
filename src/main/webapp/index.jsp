@@ -18,17 +18,14 @@ Welcome to the Consid backend library webapp
     <input type="submit" value="Add" />
 </form>
 <br>
-<form method="POST" action="helloServlet">
-    Delete category: <input type="text" name="category" />
+<form method="POST" action="deleteCategoryClick.jsp">
+    Delete category: <input type="text" name="delete" />
     <input type="submit" value="Delete" />
 </form>
 <br>
 
     <%
         HelloServlet.connectionMethod();
-
-
-
     %>
 <br><br>
 Here come the list of current categories:
@@ -37,12 +34,12 @@ Here come the list of current categories:
         Connection conn =
                 DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
         Statement stat = conn.createStatement();
-        ResultSet rs = stat.executeQuery("select * from Category;");
+        ResultSet rs = stat.executeQuery("select distinct CategoryName from Category;");
 
 
         while (rs.next()) {
             out.println("<tr>");
-            out.println("<td>" + rs.getString("Id") + "</td>");
+            //out.println("<td>" + rs.getString("Id") + "</td>");
             out.println("<td>" + rs.getString("CategoryName") + "</td>");
             out.println("<br>");
             out.println("</tr>");
