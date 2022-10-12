@@ -78,7 +78,7 @@ public class HelloServlet extends HttpServlet {
         try {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
             Statement statement = conn.createStatement();
-            String sqlString = "DELETE FROM Category WHERE CategoryName = '\" + oldcategory + \"';";
+            String sqlString = "DELETE FROM Category WHERE CategoryName = '" + oldcategory + "'";
             statement.execute(sqlString);
             statement.close();
             conn.close();
@@ -87,6 +87,27 @@ public class HelloServlet extends HttpServlet {
             System.out.println("Something went wrong when deleting Category to db: " + e.getMessage());
         }
     }
+
+    public static void editCategoryFromDatabase(String nameold, String namenew){
+
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
+            Statement statement = conn.createStatement();
+            System.out.println("Value of nameold in edit method: " + nameold);
+            System.out.println("Value of namenew in edit method: " + namenew);
+            String sqlString = "update Category set CategoryName = '" + namenew + "' where CategoryName = '" + nameold + "';";
+            System.out.println("Update sql has run with succes");
+            statement.execute(sqlString);
+            statement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Something went wrong when editing Category to db: " + e.getMessage());
+        }
+    }
+
+
+
 
 
     public void destroy() {

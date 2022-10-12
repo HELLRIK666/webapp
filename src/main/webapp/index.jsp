@@ -23,6 +23,19 @@ Welcome to the Consid backend library webapp
     <input type="submit" value="Delete" />
 </form>
 <br>
+<p>Here you can edit an already existing category: </p>
+<br>
+<form method="POST" action="editCategoryClick.jsp">
+    <label for="old">Category up for editing: </label>
+    <input type="text" id="old" name="orgcat" >
+    <label for="new">New value for that category: </label>
+    <input type="text" id="new" name="editedcat" >
+    <input type="submit" value="Edit">
+</form>
+
+
+
+
 
     <%
         HelloServlet.connectionMethod();
@@ -34,7 +47,7 @@ Here come the list of current categories:
         Connection conn =
                 DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
         Statement stat = conn.createStatement();
-        ResultSet rs = stat.executeQuery("select distinct CategoryName from Category;");
+        ResultSet rs = stat.executeQuery("select distinct CategoryName from Category ORDER BY Id;");
 
 
         while (rs.next()) {
