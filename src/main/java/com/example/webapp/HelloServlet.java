@@ -32,19 +32,41 @@ public class HelloServlet extends HttpServlet {
             System.out.println("<html><body>");
             System.out.println("<h1>" + "Connection established!!" + "</h1>");
             System.out.println("</body></html>");
+            String createTable = "CREATE TABLE IF NOT EXISTS Category (\n" +
+                                 "    Id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                                 "    CategoryName NVARCHAR UNIQUE)\n";
 
-            statement.execute(  "CREATE TABLE IF NOT EXISTS Category (\n" +
-                                    "    Id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
-                                    "    CategoryName NVARCHAR UNIQUE)\n" );
+            statement.execute(createTable);
 
             statement.close();
+
+            String LibraryTable = "CREATE TABLE IF NOT EXISTS LibraryItem (\n" +
+                                  "    Id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
+                                  "    CategoryId INTEGER,\n" +
+                                  "    Title NVARCHAR,\n" +
+                                  "    Author NVARCHAR,\n" +
+                                  "    Pages INTEGER NULL,\n" +
+                                  "    RunTimeMinutes INTEGER NULL,\n" +
+                                  "    IsBorrowable INTEGER,\n" +
+                                  "    Borrower NVARCHAR,\n" +
+                                  "    BorrowDate TEXT NULL,\n" +
+                                  "    Type NVARCHAR,\n" +
+                                  "    FOREIGN KEY(CategoryId) REFERENCES Category(Id)\n" +
+                                  ");";
+
+            statement.execute(LibraryTable);
+            statement.close();
+
 
             statement.execute(  "insert or ignore into Category (CategoryName) \n" +
                                     "values ('Action'), ('Romance') \n"
                                     );
             statement.close();
 
-
+            statement.execute(  "insert or ignore into LibraryItem (Title) \n" +
+                                    "values ('Great Title'), ('Worse Title') \n"
+            );
+            statement.close();
 
 
             conn.close();

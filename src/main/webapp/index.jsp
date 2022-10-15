@@ -41,7 +41,7 @@ Welcome to the Consid backend library webapp
         HelloServlet.connectionMethod();
     %>
 <br><br>
-Here come the list of current categories:
+Here comes the list of current categories:
 <br><br>
     <%
         Connection conn =
@@ -59,6 +59,26 @@ Here come the list of current categories:
         }
 
         rs.close();
+
+    %>
+
+<br><br>
+Here comes the list of library items:
+<br><br>
+    <%
+
+        ResultSet rsl = stat.executeQuery("select * from LibraryItem;");
+
+
+        while (rsl.next()) {
+            out.println("<tr>");
+            out.println("<td>" + rsl.getString("Id") + "</td>");
+            out.println("<td>" + rsl.getString("Title") + "</td>");
+            out.println("<br>");
+            out.println("</tr>");
+        }
+
+        rsl.close();
         conn.close();
     %>
 
