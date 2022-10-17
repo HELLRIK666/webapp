@@ -33,6 +33,18 @@ Welcome to the Consid backend library webapp
     <input type="submit" value="Edit">
 </form>
 
+<br>
+<p>Here you can add a book to the library items: </p>
+<br>
+<form method="POST" action="addBookClick.jsp">
+    <label for="old">Category up for editing: </label>
+    <input type="text" id="old" name="orgcat" >
+    <label for="new">New value for that category: </label>
+    <input type="text" id="new" name="editedcat" >
+    <input type="submit" value="Edit">
+</form>
+
+
 
 
 

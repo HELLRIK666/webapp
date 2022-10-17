@@ -43,7 +43,7 @@ public class HelloServlet extends HttpServlet {
             String LibraryTable = "CREATE TABLE IF NOT EXISTS LibraryItem (\n" +
                                   "    Id INTEGER PRIMARY KEY AUTOINCREMENT,\n" +
                                   "    CategoryId INTEGER,\n" +
-                                  "    Title NVARCHAR,\n" +
+                                  "    Title NVARCHAR UNIQUE,\n" +
                                   "    Author NVARCHAR,\n" +
                                   "    Pages INTEGER NULL,\n" +
                                   "    RunTimeMinutes INTEGER NULL,\n" +
@@ -128,7 +128,22 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
+    public static void addBookToDatabase(int CategoryId, String Title, String Author, int Pages, int RunTimeMinutes, int IsBorrowable, String Borrower, String BorrowDate, String Type){
 
+        try {
+            Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
+            Statement statement = conn.createStatement();
+
+            statement.execute(  "insert or IGNORE into LibraryItem (CategoryId, Title, Author, Pages, RunTimeMinutes, IsBorrowable, Borrower, BorrowDate, Type) \n" +
+                                    "values (' + CategoryId+ ', '" + Title + "') \n"
+            );
+            statement.close();
+            conn.close();
+
+        } catch (SQLException e) {
+            System.out.println("Something went wrong when adding Category to db: " + e.getMessage());
+        }
+    }
 
 
 
