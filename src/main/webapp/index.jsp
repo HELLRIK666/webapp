@@ -43,10 +43,20 @@ Welcome to the Consid backend library webapp
     <label for="titel">Title : </label>
     <input type="text" id="titel" name="Title" >
 
+    <label for="author">Author : </label>
+    <input type="text" id="author" name="Author" >
+
     <label for="pages">Pages : </label>
     <input type="number" id="pages" name="Pages" >
 
-    <input type="submit" value="addBook">
+    <label for="borrower">Borrowers name :  </label>
+    <input type="text" id="borrower" name="Borrower" >
+
+    <label for="borrowdate">Date of borrowing : </label>
+    <input type="text" id="borrowdate" name="BorrowDate" >
+
+
+    <input type="submit" value="Add Book">
 </form>
 
 

@@ -134,7 +134,7 @@ public class HelloServlet extends HttpServlet {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
             Statement statement = conn.createStatement();
 
-            statement.execute(  "insert or IGNORE into LibraryItem (CategoryId, Title, Author, Pages, RunTimeMinutes, IsBorrowable, Borrower, BorrowDate, Type) \n" +
+            statement.execute(  "insert or IGNORE into LibraryItem (CategoryId, Title, Author, Pages, IsBorrowable, Borrower, BorrowDate, Type) \n" +
                                     "values ('" + CategoryId + "', '" + Title + "', '" + Author + "', '" + Pages + "', '" + IsBorrowable + "', '" + Borrower + "', '" + BorrowDate + "', '" + Type + "') \n"
             );
             statement.close();
