@@ -128,20 +128,20 @@ public class HelloServlet extends HttpServlet {
         }
     }
 
-    public static void addBookToDatabase(int CategoryId, String Title, String Author, int Pages, int RunTimeMinutes, int IsBorrowable, String Borrower, String BorrowDate, String Type){
+    public static void addBookToDatabase(int CategoryId, String Title, String Author, int Pages, int IsBorrowable, String Borrower, String BorrowDate, String Type){
 
         try {
             Connection conn = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\hellr\\IdeaProjects\\webapp\\identifier.sqlite");
             Statement statement = conn.createStatement();
 
             statement.execute(  "insert or IGNORE into LibraryItem (CategoryId, Title, Author, Pages, RunTimeMinutes, IsBorrowable, Borrower, BorrowDate, Type) \n" +
-                                    "values (' + CategoryId+ ', '" + Title + "') \n"
+                                    "values ('" + CategoryId + "', '" + Title + "', '" + Author + "', '" + Pages + "', '" + IsBorrowable + "', '" + Borrower + "', '" + BorrowDate + "', '" + Type + "') \n"
             );
             statement.close();
             conn.close();
 
         } catch (SQLException e) {
-            System.out.println("Something went wrong when adding Category to db: " + e.getMessage());
+            System.out.println("Something went wrong when adding Book to db: " + e.getMessage());
         }
     }
 
